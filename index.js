@@ -10,7 +10,7 @@ function extractLinks(text) {
     while((temp = regex.exec(text)) !== null ) {
         arrayResults.push({ [temp[1]]: temp[2] })
     }
-    return arrayResults;
+    return arrayResults.length === 0 ? 'There are no links' : arrayResults;
 }
 
 extractLinks(text);
@@ -19,36 +19,12 @@ function handleError(error) {
     throw new Error(chalk.red(error.code, 'There is no archive in path'));
 }
 
-async function getArchive(archivePath) {
+export default async function getArchive(archivePath) {
     const encoding = 'utf-8';
     try {
         const text = await fs.promises.readFile(archivePath, encoding)
-        console.log(extractLinks(text))
+        return extractLinks(text);
     } catch (error) {
         handleError(error);
     }
 }
-
-getArchive('./archives/text1.md');
-
-// using .then()
-
-// function getArchive(archivePath) {
-//     const encoding = 'utf-8';
-//     fs.promises
-//     .readFile(archivePath, encoding)
-//     .then((text) => chalk.green(console.log(text)))
-//     .catch((error) => handleError(error))
-// }
-
-// not using asynchronous function
-
-// function getArchive(archivePath) {
-//     const encoding = 'utf-8';
-//     fs.readFile(archivePath, encoding, (error, text) => {
-//         if (error) {
-//             handleError(error);
-//         }
-//         console.log(chalk.green(text));
-//     })
-// }

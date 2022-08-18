@@ -5,7 +5,8 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "cli": "node cli.js ./archives/text1.md"
   },
   "keywords": [],
   "author": "",
@@ -16,6 +17,7 @@
     "color-convert": "^2.0.1",
     "color-name": "^1.1.4",
     "has-flag": "^5.0.1",
+    "node-fetch": "^3.2.10",
     "supports-color": "^9.2.2"
   }
 }
